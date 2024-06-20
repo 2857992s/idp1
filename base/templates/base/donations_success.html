@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Successful</title>
+    <script>
+        window.onload = function() {
+            alert('Thank you for your donation');
+        };
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>Donation Successful</h1>
+        <p>Your generous contribution is greatly appreciated. Your donation will make a significant impact in helping those in need.</p>
+        <p>Thank you for your support!</p>
+        <a href="/" style="text-decoration: none; color: white;">
+            <button style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                Go to Homepage
+            </button>
+        </a>
+    </div>
+</body>
+</html>
+{% endblock content%}
