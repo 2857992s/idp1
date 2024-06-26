@@ -1,0 +1,32 @@
+<!-- templates/adoption/child_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Children List{% endblock %}
+
+{% block content %}
+<h1>Children List</h1>
+<div class="row mt-3">
+    {% for child in children %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src="{{ child.photo }}" alt="{{ child.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ child.name }}</h5>
+                <p class="card-text">Age: {{ child.age }}</p>
+                <p class="card-text">Gender: {{ child.gender }}</p>
+                <p class="card-text">{{ child.description }}</p>
+                <p class="card-text">
+                    {% if child.is_adopted %}
+                        <span class="badge badge-success">Adopted</span>
+                    {% else %}
+                        <span class="badge badge-primary">Available</span>
+                        <a href="{% url 'adoption_request' child.id %}" class="btn btn-primary">Request Adoption</a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
