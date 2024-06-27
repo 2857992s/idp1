@@ -55,7 +55,7 @@ def send_donation_email(user, amount):
     recipient_list = [user.email]
     send_mail(subject,message,email_from, recipient_list)
 
-
+@login_required
 def donation_form(request):
     if request.method == 'POST':
         form = DonationForm(request.POST)
@@ -72,21 +72,12 @@ def donation_form(request):
     
     return render(request, 'base/donation_form.html', {'form': form})
 
-
-
-    return render(request, 'donation_form.html')
-
 def donation_success(request):
     return render(request, 'base/donation_success.html')
-
-# views.py
-
-
 
 
 def home(request):
     return render(request, 'base/home.html')
-
 
 
 @login_required

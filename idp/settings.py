@@ -156,5 +156,4 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 # Static files (CSS, JavaScript, Images) served from a single location
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 LOGIN_URL = 'login'
