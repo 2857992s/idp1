@@ -41,7 +41,7 @@ def donation_form(request):
     
     return render(request, 'base/donation_form.html', {'form': form})
 
-def donation_success(request):
+def donations_success(request):
     return render(request, 'base/donations_success.html')
 
 
