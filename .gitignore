@@ -106,6 +106,5 @@ docs/_build/
 .dmypy.json
 dmypy.json
 
-db.sqlite3
 
 db.sqlite3

@@ -48,7 +48,8 @@ def donation_success(request):
 def home(request):
     return render(request, 'base/home.html')
 
-
+def about(request):
+    return render(request, 'base/about.html')
 @login_required
 def adoption_request(request, child_id):
     child = get_object_or_404(Child, id=child_id )
