@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Navigation</title>
-    <style>
+    <!-- <style>
         nav {
             background-color: #333;
             padding: 10px;
@@ -32,19 +33,72 @@
             color: #333;
             
         }
+    </style> -->
+    <style>
+        .nav-item.active .nav-link {
+            text-decoration: underline;
+        }
+        /* .nav-item-center{
+            align-items: center;
+        } */
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Logo</a></li>
-            <li><a href="/donations">Donations</a></li>
-            <li><a href="/support">Support</a></li>
-            <li><a href="/adoption">Adopt</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-    </nav>
-    <hr>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Brand</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'child_list' %}">Adopt</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'donation_form' %}">Donate</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            {% if user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
+            <li><a class="dropdown-item" href="{% url 'register' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var url = window.location.href;
+            $('.navbar-nav a').each(function () {
+                if (this.href === url) {
+                    $(this).parent().addClass('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

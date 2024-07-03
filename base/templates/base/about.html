@@ -1,5 +1,42 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
 {% block content %}
-<h1>About</h1>
-<h2>hi</h2>
+
+{% load static %}
+<div class="hero">
+    <div class="hero-content">
+        <h1 class="display-4">About Us</h1>
+        <p class="lead">Learn more about our mission and values</p>
+    </div>
+</div>
+
+<!-- About Section -->
+<div class="about-section container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Our Mission</h2>
+            <p>Type Mission</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/mission.jpg' %}" class="img-fluid rounded" alt="Our Mission">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <img src="{% static 'img/vision.jpg' %}" class="img-fluid rounded" alt="Our Vision">
+        </div>
+        <div class="col-md-6">
+            <h2>Our Vision</h2>
+            <p>Add vision</p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2>Get Involved</h2>
+            <p> Join us in making a positive impact in the lives of many.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/get-involved.jpg' %}" class="img-fluid rounded" alt="Get Involved">
+        </div>
+    </div>
+</div>
 {% endblock content%}

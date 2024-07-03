@@ -5,26 +5,34 @@
 {% block title %}Login{% endblock %}
 {% crispy form %}
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-auto">
-            {{ form.username|as_crispy_field }}
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header text-center">
+                        <h4>Login to IDP APP</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-auto">
-            {{ form.password|as_crispy_field }}
-        </div>
-        <div class="col">
-          <a href="{% url 'password_reset'%}">Forgot password?</a> 
-
-        </div>
-        <div class="col">
-           Don't have an account?  <a href="{% url 'register' %}">Sign Up</a> 
-          </div>
-        
     </div>
-   
-    <button type="submit"  class="btn btn-primary mb-3">Login</button>
-</form>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 {% endblock %}

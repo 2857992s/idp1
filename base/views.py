@@ -57,23 +57,27 @@ def send_donation_email(user, amount):
 
 @login_required
 def donation_form(request):
+    amount = request.POST.get('amount')
+    message = request.POST.get('message')
+    accNo = request.POST.get('accNo')
     if request.method == 'POST':
         form = DonationForm(request.POST)
         if form.is_valid():
             donation = Donation.objects.create(
                 user=request.user,
-                amount=form.cleaned_data['amount'],
-                message=form.cleaned_data['message']
+                amount=amount,
+                message=message,
+                accNo=accNo
             )
             send_donation_email(request.user, donation.amount)
-            return redirect('donation_success')
+            return redirect('donations_success')
     else:
         form = DonationForm()
     
     return render(request, 'base/donation_form.html', {'form': form})
 
 def donation_success(request):
-    return render(request, 'base/donation_success.html')
+    return render(request, 'base/donations_success.html')
 
 
 def home(request):

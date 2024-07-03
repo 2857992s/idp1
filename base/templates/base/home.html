@@ -3,7 +3,33 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="container"></div>
-    <h1>Welcome to the IDP  App</h1>
-    <p>Find your new family member or support us with a donation.</p>
+
+{% load static %}
+<style>
+.hero {
+    background: url('{% static "base/people.jpg" %}') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.hero-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+</style>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1></h1>
+        <p>.</p>
+        <h1 class="display-4">Welcome to the IDP  App</h1>
+        <p class="lead">Find your new family member or support us with a donation</p>
+        <a href="about" class="btn btn-primary btn-lg">Learn More</a>
+    </div>
+</div>
 {% endblock %}

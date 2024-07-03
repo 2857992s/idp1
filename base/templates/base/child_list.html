@@ -19,8 +19,10 @@
                 <p class="card-text">
                     {% if child.is_adopted %}
                         <span class="badge badge-success">Adopted</span>
+                        <span class="badge text-bg-success rounded-pill">Adopted</span>
                     {% else %}
                         <span class="badge badge-primary">Available</span>
+                        <span class="badge text-bg-primary rounded-pill">222</span>
                         <a href="{% url 'adoption_request' child.id %}" class="btn btn-primary">Request Adoption</a>
                     {% endif %}
                 </p>
