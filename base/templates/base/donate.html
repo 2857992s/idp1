@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}Donate{% endblock %}
 
-  {% block title %}Donate{% endblock %}
 {% block content %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
   <style>
     .hero-section {
@@ -21,15 +20,21 @@
       padding: 1rem;
     }
     .donate-button {
-      background-color: #343a40;
-      color: white;
-      padding: 0.5rem 2rem;
-      border: none;
+      background-color: #343a40; /* Dark grey background */
+      color: white; /* White text */
+      padding: 1rem 2rem; /* Padding around text */
+      border: none; /* No border */
       cursor: pointer;
+      transition: background-color 0.3s ease; /* Smooth transition on hover */
+      display: inline-block; /* Ensures button is on the same line */
     }
- 
+    .donate-button:hover {
+      background-color: white; /* White background on hover */
+      color: #343a40; /* Dark grey text on hover */
+    }
   </style>
 </head>
+
 <body>
 
   <div class="container-fluid">
@@ -41,6 +46,9 @@
         <p><strong>Immediate Impact:</strong> Your donation provides critical aid where it’s needed most.</p>
         <p><strong>Sustainable Change:</strong> Support long-term programs that help individuals rebuild their lives.</p>
         <p><strong>Transparency:</strong> We ensure your donations are used effectively and provide regular updates on how funds are spent.</p>
+        <button type="button" class="btn donate-button" data-toggle="modal" data-target="#confirmationModal">
+            DONATE NOW
+        </button>
       </div>
       <div class="col-md-6">
         <div style="background-color: #ddd; height: 100%; display: flex; align-items: center; justify-content: center;">
@@ -56,68 +64,62 @@
       </div>
       <div class="col-md-4">
         <h3>500+</h3>
-        <p>Volunteered</p>
+        <p>Volunteers</p>
       </div>
       <div class="col-md-4">
         <h3>5</h3>
         <p>IDP Camps in Abuja</p>
       </div>
     </div>
-    <div class="row text-center custom-button">
-        <button type="button" class="btn donate-button" data-toggle="modal" data-target="#confirmationModal">
-            DONATE NOW
-        </button>
-        <div class="modal fade" id="confirmationModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Donate</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+    <div class="modal fade" id="confirmationModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Donate</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div class="card mt-5">
+                    <div class="card-header text-center">
+                      <h4>Donate</h4>
                     </div>
-                    <!-- Modal Body -->
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="card mt-5">
-                                        <div class="card-header text-center">
-                                            <h4>Donate</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form method="post">
-                                                {% csrf_token %}
-                                                <div class="form-group">
-                            {{ form.amount.label_tag }}
-                            {{ form.amount }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.message.label_tag }}
-                                        {{ form.message }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.accNo.label_tag }}
-                                        {{ form.accNo }}
-                                    </div>
-                            <button type="submit" class="btn btn-primary">DONATE</button>
-                        </form>
+                    <div class="card-body">
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ form.amount.label_tag }}
+                          {{ form.amount }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.message.label_tag }}
+                          {{ form.message }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.accNo.label_tag }}
+                          {{ form.accNo }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">DONATE</button>
+                      </form>
                     </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    <!-- Modal Footer -->
-                    <div class="modal-footer">
-    
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            </div>
+          </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
 </body>
 {% endblock %}
-
