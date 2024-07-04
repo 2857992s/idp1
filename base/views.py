@@ -68,6 +68,9 @@ def home(request):
 
 def about(request):
     return render(request, 'base/about.html')
+
+def contact(request):
+    return render(request, 'base/contact.html')
 @login_required
 def adoption_request(request, child_id):
     child = get_object_or_404(Child, id=child_id )
