@@ -41,6 +41,24 @@ def donation_form(request):
     
     return render(request, 'base/donation_form.html', {'form': form})
 
+def donate(request):
+    form = DonationForm()
+    amount = request.POST.get('amount')
+    message = request.POST.get('message')
+    accNo = request.POST.get('accNo')
+    if request.method == 'POST':
+        form = DonationForm(request.POST)
+        if form.is_valid():
+            donation = Donation.objects.create(
+                user=request.user,
+                amount=amount,
+                message=message,
+                accNo=accNo,
+            )
+            send_donation_email(request.user, donation.amount)
+            return redirect('donations_success')
+    return render(request, 'base/donate.html', {'form': form})
+
 def donations_success(request):
     return render(request, 'base/donations_success.html')
 

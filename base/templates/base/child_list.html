@@ -5,12 +5,23 @@
 {% block title %}Children List{% endblock %}
 
 {% block content %}
-<h1>Children List</h1>
-<div class="row mt-3">
+<style>
+    
+    .child-list {
+      background-color: #a8d0e6;
+      padding-bottom: 25%;
+      text-align: center;
+      
+    }
+    </style>
+
+<div class="container-fluid child-list">
+    <h1>Children List</h1>
+   <div class="row ">
     {% for child in children %}
-    <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ child.photo }}" alt="{{ child.name }}">
+    <div class="col-md-5">
+        <div class="card mb-4 shadow-sm" style="width: 25rem; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <img class="card-img-top" src="{{ child.image.url }}" alt="{{ child.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ child.name }}</h5>
                 <p class="card-text">Age: {{ child.age }}</p>
@@ -21,14 +32,50 @@
                         <span class="badge badge-success">Adopted</span>
                         <span class="badge text-bg-success rounded-pill">Adopted</span>
                     {% else %}
-                        <span class="badge badge-primary">Available</span>
-                        <span class="badge text-bg-primary rounded-pill">222</span>
-                        <a href="{% url 'adoption_request' child.id %}" class="btn btn-primary">Request Adoption</a>
+
+                        
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">
+                            Adopt
+                        </button>
+                        <div class="modal fade" id="confirmationModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        Are you sure you want to adopt {{ child.name }}?
+                                    </div>
+                                    <!-- Modal Footer -->
+                                    <div class="modal-footer">
+                                        <a href="{% url 'adoption_request' child.id %}" class="btn btn-primary">Request Adoption</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        
                     {% endif %}
                 </p>
             </div>
         </div>
     </div>
     {% endfor %}
+</div> 
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById('confirmDelete').addEventListener('click', function() {
+        // Handle the confirmation action here
+        console.log('Item deleted');
+        $('#confirmationModal').modal('hide');
+    });
+</script>
+
 {% endblock %}

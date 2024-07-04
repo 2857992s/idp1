@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     
     <title>Navigation</title>
     <!-- <style>
@@ -36,24 +37,38 @@
     </style> -->
     <style>
         .nav-item.active .nav-link {
-            text-decoration: underline;
+            background-color: #032e46;
         }
         /* .nav-item-center{
             align-items: center;
         } */
+        .custom-navbar {
+    background: linear-gradient(to right, #a8d0e6, #75a8c4); /* Gradient from orange to pink */
+    color: white;
+}
+
+.custom-navbar .nav-link {
+    color: white !important;
+}
+
+.custom-navbar .navbar-brand {
+    color: white !important;
+}
     </style>
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Brand</a>
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'logo.jpg' %}" alt="Logo" width="60" height="50" class="d-inline-block align-text-top">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
+      <ul class="navbar-nav mx-auto nav-pills">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          <a class="nav-link " aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about' %}">About Us</a>
@@ -65,7 +80,7 @@
           <a class="nav-link" href="{% url 'child_list' %}">Adopt</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'donation_form' %}">Donate</a>
+            <a class="nav-link" href="{% url 'donate' %}">Donate</a>
           </li>
       </ul>
       <ul class="navbar-nav ms-auto">

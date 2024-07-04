@@ -2,40 +2,76 @@
 {% block content %}
 
 {% load static %}
-<div class="hero">
-    <div class="hero-content">
-        <h1 class="display-4">About Us</h1>
-        <p class="lead">Learn more about our mission and values</p>
-    </div>
-</div>
 
-<!-- About Section -->
-<div class="about-section container">
-    <div class="row">
+<style>
+    .section-title {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .about-us-img {
+        max-width: 100%;
+        height: auto;
+    }
+    .about-us{
+        background-color: #a8d0e6;
+        padding-bottom: 6%;
+    
+    }
+    .our-mission{
+        margin-left: 100px;
+    
+    }
+    .about-us-txt{
+        margin-left: 80px;
+        
+    }
+    .our-vision{
+        margin-left: 120px;
+    
+    }
+    .get-involved{ 
+        margin-left: 140px;
+
+    }
+</style>
+<div class="container-fluid about-us">
+    <div class="row align-items-center">
+        
         <div class="col-md-6">
-            <h2>Our Mission</h2>
-            <p>Type Mission</p>
+            <div class="about-us-txt">
+                  <h2 class="section-title">About Us</h2>
+            <p>Welcome to our Internally Displaced
+                Persons (IDP) Camp website. Our mission
+                is to provide a safe haven and essential
+                resources for those displaced by conflict,
+                natural disasters, and other crises.</p>
+            </div>
+          
+            <div class="our-mission">
+                <h2 class="section-title">Our Mission</h2>
+            <p>Our mission is to provide a safe and supportive
+                environment for internally displaced persons
+                offering essential resources and services to help
+                rebuild their lives.</p>
+            </div>
+            
+            <div class="our-vision">
+                 <h2 class="section-title">Our Vision</h2>
+            <p>Our vision is to create a world where
+                internally displaced persons are not only
+                provided with immediate relief and support
+                but are also empowered to rebuild their lives
+                and communities</p>
+            </div>
+           
+            <div class="get-involved">
+                  <h2 class="section-title">Get Involved</h2>
+            <p>Join us in making a positive impact in the lives of many</p>
+            </div>
+          
         </div>
-        <div class="col-md-6">
-            <img src="{% static 'img/mission.jpg' %}" class="img-fluid rounded" alt="Our Mission">
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <img src="{% static 'img/vision.jpg' %}" class="img-fluid rounded" alt="Our Vision">
-        </div>
-        <div class="col-md-6">
-            <h2>Our Vision</h2>
-            <p>Add vision</p>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <h2>Get Involved</h2>
-            <p> Join us in making a positive impact in the lives of many.</p>
-        </div>
-        <div class="col-md-6">
-            <img src="{% static 'img/get-involved.jpg' %}" class="img-fluid rounded" alt="Get Involved">
+        <div class="col-md-5">
+            <img src="{% static 'base/people.jpg' %}" alt="About Us Image" class="about-us-img">
         </div>
     </div>
 </div>

@@ -5,6 +5,9 @@ from .models import Donation, User
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
 
 class DonationForm(forms.ModelForm):
+    amount = forms.CharField(max_length=30, required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Amount'}))
+    message = forms.CharField(max_length=30, required=True, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Mesage', 'rows' : '3'}))
+    accNo = forms.CharField(max_length=30, required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Accoount Number'}))
     class Meta:
         model = Donation
         fields = ('amount', 'message', 'accNo', )
@@ -40,10 +43,15 @@ class CustomUserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
 class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
+
     class Meta:
         model = User
         fields = ['email']
 
 class CustomSetPasswordForm(SetPasswordForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})
 
