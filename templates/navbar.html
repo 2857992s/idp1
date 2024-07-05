@@ -6,44 +6,12 @@
     {% load static %}
     
     <title>Navigation</title>
-    <!-- <style>
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: space-around;
-        }
-        li {
-            flex: 1;
-            text-align: center;
-        }
-        a {
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-            display: block;
-            padding: 10px;
-        }
-        a:hover {
-            background-color: white;
-            color: #333;
-            
-        }
-    </style> -->
     <style>
         .nav-item.active .nav-link {
             background-color: #032e46;
         }
-        /* .nav-item-center{
-            align-items: center;
-        } */
         .custom-navbar {
-    background: linear-gradient(to right, #a8d0e6, #75a8c4); /* Gradient from orange to pink */
+    background: linear-gradient(to right, #a8d0e6, #75a8c4); 
     color: white;
 }
 
@@ -74,14 +42,17 @@
           <a class="nav-link" href="{% url 'about' %}">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
+          <a class="nav-link" href="{% url 'blog' %}">Blog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'child_list' %}">Adopt</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'donate' %}">Donate</a>
-          </li>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+        </li>
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
