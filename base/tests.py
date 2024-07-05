@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from django.test import TestCase
 from django.urls import reverse
-from .models import Child
+from .models import Child,AdoptionRequest
 
 class ChildModelTests(TestCase):
     def setUp(self):
@@ -16,10 +16,22 @@ class ChildModelTests(TestCase):
         self.assertEqual(child.description, "Test description")
         self.assertEqual(child.gender, "M")
 
-class AdoptionRequestTests(TestCase):
+
+
+
+class ChildListTests(TestCase):
     def test_adoption_request_page(self):
         """Test if the adoption request page loads correctly"""
         response = self.client.get(reverse('child_list'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Child List")
+
+
+
+class ADonateTests(TestCase):
+    def test_adoption_request_page(self):
+        """Test if the adoption request page loads correctly"""
+        response = self.client.get(reverse('donate'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Donate")
 
