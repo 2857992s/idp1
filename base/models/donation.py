@@ -3,24 +3,27 @@ from .user import User
 
 # Create your models here.
 class Donation(models.Model):
+
+    DONATION_TYPES = [
+        ('money', 'Money'),
+        ('hospital', 'Hospital Facilities'),
+        ('food', 'Food'),
+        ('shelter', 'Shelter'),
+        ('clothing', 'Clothing'),
+    ]
+    
+    donation_type = models.CharField(max_length=20, choices=DONATION_TYPES ) 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.IntegerField()
-    accNo = models.IntegerField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)   
     reference = models.CharField(max_length=128,null=True, blank=True)
-    message = models.TextField()
+    description = models.TextField(null=True, blank=True)  # For other types of donations
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
     
+    
+    def __str__(self):
+       return f"{self.get_donation_type_display()} - {self.amount if self.donation_type == 'money' else self.description}"
+    
 
    
-    
-# class Message(models.Model):
-#     #user = 
-#     donations = models.ForeignKey(Donation, on_delete=models.CASCADE)
-#     body = models.TextField()
-#     updated = models.DateTimeField(auto_now=True)
-#     donation_made = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#         return self.body[0:50]
     

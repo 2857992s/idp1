@@ -5,12 +5,14 @@ from .models import Donation, User
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
 
 class DonationForm(forms.ModelForm):
-    amount = forms.CharField(max_length=30, required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Amount'}))
-    message = forms.CharField(max_length=30, required=True, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Mesage', 'rows' : '3'}))
-    accNo = forms.CharField(max_length=30, required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Accoount Number'}))
     class Meta:
         model = Donation
-        fields = ('amount', 'message', 'accNo', )
+        fields = ['donation_type', 'amount', 'description']
+        widgets = {
+            'donation_type': forms.Select(attrs={'class': 'form-control'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }
 
 
 

@@ -5,9 +5,24 @@
 {% block title %}Login{% endblock %}
 {% crispy form %}
 {% block content %}
+<style>
+      .hero-section {
+
+      background-color: #a8d0e6;
+        padding: 7%;
+    
+      
+      
+    }
+    body {
+            background-color:#a8d0e6; /* Replace with your desired background color */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+</style>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container-fluid ">
+        <div class="row justify-content-center hero-section">
             <div class="col-md-6">
                 <div class="card mt-5">
                     <div class="card-header text-center">

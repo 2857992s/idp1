@@ -89,25 +89,25 @@
           <div class="modal-body">
             <div class="container">
               <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div class="card mt-5">
+                <div class="col-md-8">
+                  <div class="card mt-6">
                     <div class="card-header text-center">
                       <h4>Donate</h4>
                     </div>
                     <div class="card-body">
-                      <form method="post">
+                      <form id="donationForm" method="post">
                         {% csrf_token %}
                         <div class="form-group">
                           {{ form.amount.label_tag }}
+                          {{ form.donation_type }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.description.label_tag }}
+                          {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.amount.label_tag }}
                           {{ form.amount }}
-                        </div>
-                        <div class="form-group">
-                          {{ form.message.label_tag }}
-                          {{ form.message }}
-                        </div>
-                        <div class="form-group">
-                          {{ form.accNo.label_tag }}
-                          {{ form.accNo }}
                         </div>
                         <button type="submit" class="btn btn-primary">DONATE</button>
                       </form>
@@ -125,6 +125,19 @@
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById('donationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+        
+        if (!isAuthenticated) {
+            window.location.href = "{% url 'login' %}?next={{ request.path }}"; // Redirect to login with next parameter
+        } else {
+            this.submit(); // Submit the form if the user is authenticated
+        }
+    });
+</script>
 
 </body>
 {% endblock content%}
