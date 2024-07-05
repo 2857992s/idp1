@@ -12,8 +12,7 @@ class Donation(models.Model):
     updated = models.DateTimeField(auto_now=True)
     
 
-    def __str__(self):
-        return self.name
+   
     
 # class Message(models.Model):
 #     #user = 

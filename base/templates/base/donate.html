@@ -3,6 +3,7 @@
 {% block title %}Donate{% endblock %}
 
 {% block content %}
+{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,6 +33,10 @@
       background-color: white; /* White background on hover */
       color: #343a40; /* Dark grey text on hover */
     }
+    .donate-img {
+      height: 100%;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -52,7 +57,7 @@
       </div>
       <div class="col-md-6">
         <div style="background-color: #ddd; height: 100%; display: flex; align-items: center; justify-content: center;">
-          <p>Picture of IDP's</p>
+          <img src="{% static 'donation.jpg' %}" alt="About Us Image" class="donate-img">
         </div>
       </div>
     </div>
@@ -122,4 +127,4 @@
   </div>
 
 </body>
-{% endblock %}
+{% endblock content%}

@@ -2,7 +2,7 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Children List{% endblock %}
+{% block title %}Adopt{% endblock %}
 
 {% block content %}
 <style>
@@ -13,15 +13,21 @@
       text-align: center;
       
     }
+    .child-img {
+            width: 300px; 
+            height: 300px; 
+            object-fit: cover;
+            text-align: center;
+        }
     </style>
 
 <div class="container-fluid child-list">
-    <h1>Children List</h1>
+    
    <div class="row ">
     {% for child in children %}
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="card mb-4 shadow-sm" style="width: 25rem; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
-            <img class="card-img-top" src="{{ child.image.url }}" alt="{{ child.name }}">
+            <img class="card-img-top child-img" src="{{ child.image.url }}" alt="{{ child.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ child.name }}</h5>
                 <p class="card-text">Age: {{ child.age }}</p>
