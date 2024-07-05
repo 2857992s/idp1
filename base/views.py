@@ -7,7 +7,7 @@ from .models import Child, Donation , AdoptionRequest
 from django.core.mail import send_mail
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
-from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomPasswordResetForm, CustomSetPasswordForm, DonationForm
+from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomPasswordResetForm, CustomSetPasswordForm, DonationForm, AdoptionRequestForm
 
 def child_list(request):
     children = Child.objects.all()
@@ -63,7 +63,6 @@ def donate(request):
 def donations_success(request):
     return render(request, 'base/donations_success.html')
 
-
 def home(request):
     return render(request, 'base/home.html')
 
@@ -75,16 +74,22 @@ def contact(request):
 
 def blog(request):
     return render(request, 'base/blog.html')
+
+
 @login_required
 def adoption_request(request, child_id):
-    child = get_object_or_404(Child, id=child_id )
-    adoption_request = AdoptionRequest.objects.create(
-        child= child,
-        user=request.user,
-        status='pending'  # Set initial status as pending
-    )
-    
-    return redirect('child_list')  # Replace 'success_page' with your actual URL nam
+    child = get_object_or_404(Child, id=child_id)
+    if request.method == 'POST':
+        form = AdoptionRequestForm(request.POST)
+        if form.is_valid():
+            adoption_request = form.save(commit=False)
+            adoption_request.user = request.user
+            adoption_request.child = child
+            adoption_request.save()
+            return redirect('child_list')
+    else:
+        form = AdoptionRequestForm()
+    return render(request, 'create_adoption_request.html', {'form': form, 'child': child})
 
 @login_required
 def adoption_requests_view(request):

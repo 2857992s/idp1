@@ -26,71 +26,68 @@ body {
       padding: 0; /* Remove default padding */
   }
     </style>
-    <body>
-   <div class="container-fluid child-list">
-    
-   <div class="row ">
-    {% for child in children %}
-    <div class="col-md-4 " >
-        <div class="card mb-4 shadow-sm" style="width: 25rem; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
-            <img class="card-img-top child-img" src="{{ child.image.url }}" alt="{{ child.name }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ child.name }}</h5>
-                <p class="card-text">Age: {{ child.age }}</p>
-                <p class="card-text">Gender: {{ child.gender }}</p>
-                <p class="card-text">{{ child.description }}</p>
-                <p class="card-text">
-                    {% if child.is_adopted %}
-                        <span class="badge badge-success">Adopted</span>
-                        <span class="badge text-bg-success rounded-pill">Adopted</span>
-                    {% else %}
-
-                        
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">
+   
+   <body>
+    Child List
+    <div class="container mt-5">
+        <div class="row">
+            {% for child in children %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ child.image.url }}" class="card-img-top" alt="{{ child.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ child.name }}</h5>
+                        <p class="card-text">{{ child.description }}</p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#adoptionRequestModal-{{ child.id }}">
                             Adopt
                         </button>
-                        <div class="modal fade" id="confirmationModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Confirmation</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                        Are you sure you want to adopt {{ child.name }}?
-                                    </div>
-                                    <!-- Modal Footer -->
-                                    <div class="modal-footer">
-                                        <a href="{% url 'adoption_request' child.id %}" class="btn btn-primary">Request Adoption</a>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <!-- Modals -->
+        {% for child in children %}
+        <div class="modal fade" id="adoptionRequestModal-{{ child.id }}" tabindex="-1" aria-labelledby="adoptionRequestModalLabel-{{ child.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adoptionRequestModalLabel-{{ child.id }}">Adoption Request for {{ child.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'adoption_request' child.id %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="marital_status" class="form-label">Marital Status</label>
+                                <input type="text" class="form-control" id="marital_status" name="marital_status" required>
                             </div>
-                        
-                    {% endif %}
-                </p>
+                            <div class="mb-3">
+                                <label for="date_of_birth" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="state_of_origin" class="form-label">State of Origin</label>
+                                <input type="text" class="form-control" id="state_of_origin" name="state_of_origin" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div> 
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-    document.getElementById('confirmDelete').addEventListener('click', function() {
-        // Handle the confirmation action here
-        console.log('Item deleted');
-        $('#confirmationModal').modal('hide');
-    });
-</script>     
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     </body>
-
 
 
 {% endblock %}

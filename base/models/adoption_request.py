@@ -22,6 +22,14 @@ class AdoptionRequest(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     approved_date = models.DateTimeField(null=True, blank=True)
     rejected_date = models.DateTimeField(null=True, blank=True)
+    address = models.CharField(max_length=255,)
+    marital_status = models.CharField(max_length=50, )
+    date_of_birth = models.DateField()
+    state_of_origin = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Adoption request by {self.user.first_name} {self.user.last_name}"
 
     def save(self, *args, **kwargs):
         # Automatically set the child's adoption status if the request is approved
